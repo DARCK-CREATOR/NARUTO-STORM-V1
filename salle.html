@@ -288,6 +288,7 @@
     vieUser -= degats
     if (vieUser <= 0) {
 salle.innerHTML +=` <p class="ordi"><b>${ordiNom} a gagné !</b></p>`;
+      finCombat();
 desactiverButton();
 return;
 }
