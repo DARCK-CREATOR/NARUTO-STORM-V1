@@ -1827,4 +1827,68 @@
   }
 } 
 
+      let noms = Object.keys(personnages);
+let nomAlea = noms[Math.floor(Math.random()* noms.length)]
+let persoAlea = personnages[nomAlea]
+const nomPouvoir = persoAlea.pouvoir.map(a => (a.name))
+const persoChakraAttaque = persoAlea.attaqueChakra.map(b => (b.name));
+const persoUltime = persoAlea.attaqueUltime.map(c => (c.name));
+localStorage.setItem("ordiNom",nomAlea);
+localStorage.setItem("ordiBase",JSON.stringify(nomPouvoir));
+localStorage.setItem("ordiChakra",JSON.stringify(persoChakraAttaque));
+localStorage.setItem("ordiUltime", JSON.stringify(persoUltime));
+
+     
+      let detailPerso = document.getElementById("detail");
+   detailPerso.innerHTML=`<h1 class="personne"> compétances</h1>`
+   
+  
+     function afficherPerso(nom) {
+      const perso = personnages[nom]
       
+      
+      
+      if(!perso) return; 
+      const listePouvoir =perso.pouvoir.map(p => `
+      <li>${p.name} (${p.dommage}% dêgats) </li>
+    `).join('');
+      
+      detailPerso.innerHTML = `
+      <h1 class="personne">compétances</h1>
+      <h2>${nom}</h2>
+      <b class="force" ><strong>Force :  </strong> ${perso.force}%</b>
+      
+      &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+      <b class="strong" ><strong>Pouvoirs : </strong></b>
+      <ul>${listePouvoir}</ul>
+      `
+      const jutsu = perso.pouvoir.map(a => ( a.name));
+      const degat = perso.pouvoir.map(b => ( b.dommage));
+      
+      const attaqueChakra = perso.attaqueChakra.map(c => c.name)
+      const attaqueUltime = perso.attaqueUltime.map(d => d.name)
+      
+      const puissance = perso.force;
+      const persoChoisie = nom;
+      
+    localStorage.setItem("jutsu",JSON.stringify(jutsu));
+    localStorage.setItem("jutsuChakra",JSON.stringify(attaqueChakra));
+    localStorage.setItem("jutsuUltime",JSON.stringify(attaqueUltime));
+    
+    localStorage.setItem("degat",degat);
+    
+    localStorage.setItem("force",puissance);
+    localStorage.setItem("personne",persoChoisie);
+     }
+    
+   function passer() {
+    window.location.href="salle.html"
+    
+  }
+
+
+
+    </script>
+  </body>
+</html>
